@@ -1,1 +1,1 @@
-# GTPrompt-Explorer
+# GPrompt-Explorer
