@@ -1,0 +1,28 @@
+#SeaLab 2021 Experience (F) v1 by stunspot@gmail.com
+
+Create an immersive and detailed narrative set in the world of "SeaLab 2021" with the following elements:
+
+1. Introduce main characters: Captain Hazel "Hank" Murphy, Dr. Quentin Q. Quinn, Debbie DuPree, Marco Rodrigo Diaz de Vivar Gabriel Garcia Marquez, and Hesh Hepplewhite.
+2. Establish setting: an underwater research facility, SeaLab 2021, located at the bottom of the ocean.
+3. Describe facility: a futuristic, state-of-the-art laboratory with advanced technology, living quarters, and recreational areas, surrounded by a vast and mysterious underwater world.
+4. Incorporate humor: absurd situations, witty dialogue, character quirks, and running gags, such as Captain Murphy's obsession with scorpions and Hesh's bizarre catchphrases.
+5. Develop conflict: malfunctioning equipment causing chaos, interpersonal tensions among crew members, and external threats like hostile sea creatures or rival organizations.
+6. Introduce subplot: a secret experiment conducted by Dr. Quinn, a hidden agenda by a crew member, or a mysterious artifact discovered in the depths of the ocean.
+7. Include Hesh: involve Hesh in the main conflict or subplot, showcasing his unique personality and skills, such as his expertise in communications or his unpredictable behavior.
+8. Build suspense: escalating problems that threaten the safety of SeaLab, unexpected twists that challenge the crew's loyalties, and high stakes that force characters to make difficult choices.
+9. Incorporate action: thrilling underwater battles against sea monsters, daring rescues of stranded crew members, and tense confrontations between characters with conflicting goals.
+10. Resolve conflict: the crew comes together to overcome obstacles, using their individual strengths, ingenuity, or sacrifices to save SeaLab and each other.
+11. Conclude story: lessons learned about teamwork and trust, relationships strengthened among crew members, and the promise of new adventures and challenges on the horizon.
+
+Ensure the narrative captures the essence of "SeaLab 2021" while providing an engaging and immersive experience for the user, filled with humor, action, and intrigue.
+
+    [SenseHumor]:(1(1.1-CltrlAwr-1.2-EmtRcg-1.3-LngSk)>2(2.1-CgnFlx-2.2-Crtv-2.3-KnwBse)>3(3.1-Expres-3.2-Tmg-3.3-Recip))
+    [WestPopCult]:(1(1.1-Med-1.2-Trnds-1.3-Figs)>2(2.1-CultCtxt-2.2-Crit-2.3-Evol)>3(3.1-Comm-3.2-Creat-3.3-Critq))
+
+[MASTERSTORY]:NarrStrct(StryPlnng,Strbd,ScnSttng,Exps,Dlg*,Pc)-CharDvlp(ChrctrCrt,ChrctrArcs,Mtvtn,Bckstry,Rltnshps,Dlg)-PltDvlp(StryArcs,PltTwsts,Sspns,Fshdwng,Climx,Rsltn)-ConfResl(Antg,Obstcls,Rsltns,Cnsqncs,Thms,Symblsm)-EmotImpct(Empt,Tn,Md,Atmsphr,Imgry,Symblsm)-Delvry(Prfrmnc,VcActng,PblcSpkng,StgPrsnc,AudncEngmnt,Imprv)
+[Bold][Task][*DialogWrt]:(1a-CharDvlp-1a.1-Backgrnd-1a.2-Personality-1a.3-GoalMotiv)>2(2a-StoryStruc-2a.1-PlotPnt-2a.2-Conflict-2a.3-Resolution)>3(3a-DialogTech-3a.1-ShowDontTell-3a.2-Subtext-3a.3-VoiceTone-3a.4-Pacing-3a.5-VisualDescrip)>4(4a-DialogEdit-4a.1-ReadAloud-4a.2-Feedback-4a.3-Revision)[/Task][/Bold]
+
+
+
+
+(Promptcraft by stunspot@gmail.com https://www.patreon.com/StunspotPrompting)
