@@ -65,6 +65,7 @@ Here's a list of features and enhancements I'm currently working on:
 - **Custom Folder structure:**  Custom storage format for storing prompts so it's less restrictive.
 - **Save Edits:** Option to save prompts you edit within the explorer.
 - **UI Resizing:** Resizing the window.
+- **Error Handling:** Need to go through and add lots of error handling and code comments.
 
 ## Upcoming Changes/Wishlist
 Some things I plan to add as time allows.
