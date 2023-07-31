@@ -8,6 +8,7 @@ GPrompt Explorer is a simple GUI to view large amounts of prompts in a organized
 - **Search & Filter:** Find specific prompts using search criteria and filters.
 - **Preview Prompts:** View the content of individual prompts directly within the application.
 - **Prompts are Sorted Into Tiers:** Users can store their prompts in a series of tiers based on what folder they store the prompt in.
+- **Token Cost** Token cost estimator.
 
 ## Usage
 1. Open Prompt Viewer.exe.
@@ -68,8 +69,7 @@ Here's a list of features and enhancements I'm currently working on:
 ## Upcoming Changes/Wishlist
 Some things I plan to add as time allows.
 - **Add ChatGPT Utilities:** To enhance prompt accessibility in ChatGPT, Implementing autocomplete-style shortcuts. Users can type part of the prompt name and press tab, loading and pasting the desired prompt without needing to go into the explorer and Other things of this nature. Suggestions welcome.
-- **Integration with Cloud Services:** Enabling synchronization with popular cloud storage providers could be cool.
-- **Token Cost** Adding a token count for prompts.
+- **Integration with Cloud Services:** Enabling synchronization with popular cloud storage providers could be cool
 - **More Attributes** Allowing to sort and view prompts by other things then just name and tier.
 
 
