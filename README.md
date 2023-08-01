@@ -15,13 +15,14 @@ GPrompt Explorer is a simple GUI to view large amounts of prompts in a organized
 - **Token Cost** Token cost estimator.
 
 ## Usage
-1. Open Prompt Viewer.exe.
+1. Open GPrompt Explorer-v.exe
 2. The folder should autoselect and load all prompts as long as the dir structure is maintained. Otherwise you can select the folder containing the prompts with by pressing the `Folder` button.
 3. Use the navigation panel to browse through the prompts.
 4. Double-click a prompt to preview its content.
 5. You can use the search field to narrow down which prompts are visible, just erase the search when you're done and it wil repopulate automatically.
 6. You can hit the `Clipboard` buttton to copy the contents of the loaded prompt to the clipboard. (Note: The prompt field is editable but no changes are saved in the source file.
 7. If you add edit or add new prompts while it's running you can press F5 or load the folder again to repopulate the panel.
+8. Pressing the `Estimate` will take everything in the prompts display box and estimate how many tokens it is total. Be patient it can take up to 10 seconds sometimes depending on the length of the prompt. I'll add a indicator that shows if it's loading soon.
 
 ##GUI Elements
 
@@ -48,7 +49,7 @@ GPrompt Explorer is a simple GUI to view large amounts of prompts in a organized
 ## Installation
 1. Download the latest release from [GitHub](https://github.com/FinickySpider/GPrompt-Explorer/releases/tag/Alpha).
 2. Extract the ZIP file.
-3. Run `Prompt Viewer.exe` (Windows Only Sorry)
+3. Run `GPrompt Explorer-v.exe` (Windows Only Sorry)
 
 ## Adding Your Own Custom Prompts
 
