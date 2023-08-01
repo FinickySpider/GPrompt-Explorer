@@ -152,7 +152,7 @@ if not A_IsAdmin                ; Run as Admin just in case
     
     Gui Font, q5 s9, Segoe UI Emoji
     Gui Add, ListView,-Multi SortDesc hWndhListIndex x24 y66 w303 h749 +LV0x4000 vMyListViewV gMyListView, Prompt|Tier
-    Gui Add, Picture, hWndhPicIndex x368 y66 w400 h400 +Border +0x1000 +0x40000 vMyPic, %A_ScriptDir%\default.png
+    Gui Add, Picture, hWndhPicIndex x368 y66 w400 h400 +Border +0x1000 +0x40000 vMyPic, %A_ScriptDir%\Img\default.png
     Gui Add, Edit, hWndheditIndex x368 y522 w784 h273 +Multi vpromptContent,
     Gui Add, GroupBox, x802 y66 w343 h393, Controls & Settings
     Gui Add, Button, x1016 y810 w120 h44, Clipboard
@@ -218,7 +218,7 @@ if not A_IsAdmin                ; Run as Admin just in case
     {
         goto, ReadFiles
     }
-    
+
     return ;===== End automatic execution ==========================================
     
 
