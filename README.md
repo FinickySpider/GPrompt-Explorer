@@ -24,7 +24,7 @@ GPrompt Explorer is a simple GUI to view large amounts of prompts in a organized
 7. If you add edit or add new prompts while it's running you can press F5 or load the folder again to repopulate the panel.
 8. Pressing the `Estimate` will take everything in the prompts display box and estimate how many tokens it is total. Be patient it can take up to 10 seconds sometimes depending on the length of the prompt. I'll add a indicator that shows if it's loading soon.
 
-##GUI Elements
+## GUI Elements
 
 1. Location to the prompts folder.
 2. Button to open a folder dialog to select a custom folder (Should automatically select the proper folder as long as it's in the same dir as the exe).
