@@ -33,8 +33,12 @@ GPrompt Explorer is a simple GUI to view large amounts of prompts in a organized
 6. Copies the contents of the edit box to your clipboard.
 7. Display Image to go along with prompt for fun. :)
 8. Displays all the loaded prompts. Double Click to open one.
+9. Button to estimate amount of tokens.
+10. Token amount total.
+11. The estimated string broken down into thier individual token ID's 
 
-![image](https://github.com/FinickySpider/GPrompt-Explorer/assets/8377070/a4629fa2-864c-4a8e-be2f-c92e0bd63ca8)
+![image](https://github.com/FinickySpider/GPrompt-Explorer/assets/8377070/da2ed1d4-6393-4f96-8afd-5356946201d6)
+
 
 
 
