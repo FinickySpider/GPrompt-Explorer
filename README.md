@@ -1,6 +1,8 @@
 # GPrompt Explorer
 
 
+# Currently a issue with windows 11. I'm working on fixing it!
+
 ### **Excuse the messy code, I'll clean it up soon!**
 
 
