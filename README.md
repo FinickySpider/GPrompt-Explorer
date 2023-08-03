@@ -1,8 +1,13 @@
 # GPrompt Explorer
 
 
-# Currently a issue with windows 11. I'm working on fixing it!
+## Downloads
 
+- [Basic Version](https://github.com/FinickySpider/GPrompt-Explorer/releases/tag/v0.0.2) (Using tiered folders to sort by, like Stuns server is formatted)
+- [Win 11 Basic Version](https://github.com/FinickySpider/GPrompt-Explorer/releases/tag/v0.0.0.2-Win11)
+- [Alt Version](https://github.com/FinickySpider/GPrompt-Explorer/releases/tag/v0.0.2_Alt) (Freeform folders but no tier sorting)
+
+  
 ### **Excuse the messy code, I'll clean it up soon!**
 
 
