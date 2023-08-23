@@ -5,7 +5,7 @@
 ; OS Version:  Windows 10
 ; Language:    English (United States)
 ; Author:      Gatorchopps FinickySpider@gmail.com
-; Filename:    New AutoHotkey Prompt Viewer.ahk
+; Filename:    Prompt Viewer.ahk
 ; ==============================================================================
 
 ; Revision History =============================================================
@@ -105,7 +105,9 @@ if not A_IsAdmin                ; Run as Admin just in case
      #Include %A_ScriptDir%\Lib\AutoXYWH.ahk
      #Include %A_ScriptDir%\Lib\JSON.ahk
      #Include %A_ScriptDir%\Lib\Class_Toolbar.ahk
-     
+     #Include %A_ScriptDir%\Lib\jxon.ahk
+     #Include %A_ScriptDir%\Functions.ahk
+
      
      
      
@@ -125,8 +127,9 @@ if not A_IsAdmin                ; Run as Admin just in case
     Global _ImagePath := A_ScriptDir . "\Img\"
     Global _LogPath := A_ScriptDir . "\Logs\"
      
+     LoadSettingsIni()
     
-    folder = %A_WorkingDir%\Prompts
+    ;folder = %A_WorkingDir%\Prompts
     
     txtArray := []
     maxtxt = 0
@@ -151,7 +154,7 @@ if not A_IsAdmin                ; Run as Admin just in case
     
     
     Gui Font, q5 s9, Segoe UI Emoji
-    Gui Add, ListView,-Multi SortDesc hWndhListIndex x24 y66 w303 h749 +LV0x4000 vMyListViewV gMyListView, Prompt|Tier
+    Gui Add, ListView,-Multi SortDesc hWndhListIndex x24 y66 w303 h749 +LV0x4000 vMyListViewV gMyListView, Prompt
     Gui Add, Picture, hWndhPicIndex x368 y66 w400 h400 +Border +0x1000 +0x40000 vMyPic, %A_ScriptDir%\Img\default.png
     Gui Add, Edit, hWndheditIndex x368 y522 w784 h273 +Multi vpromptContent,
     Gui Add, GroupBox, x802 y66 w343 h393, Controls & Settings
@@ -172,6 +175,7 @@ if not A_IsAdmin                ; Run as Admin just in case
     
     
     SB_SetParts(600, 248)
+    SB_SetIcon(A_ScriptDir . "\Img\GreyDot.ico", 1, 1)
     Gui, Add, Text, x5 y881+10 w1160 h5 vP, -
     GuiControlGet, P, Pos
     H := PY + PH
@@ -264,44 +268,11 @@ if not A_IsAdmin                ; Run as Admin just in case
           If InStr(FileName, SearchTerm) ; for overall matching
           {
           
+            SplitPath, FileName, fname, dir, ext, name_no_ext, drive 
+            ;StringTrimRight, Prmpt, FileName, 4
+            LV_Add("", name_no_ext)
+         
           
-          If InStr(FileName, "|00")
-         {
-            StringTrimRight, Prmpt, FileName, 7
-            LV_Add("", Prmpt, 00)
-         
-         }
-          
-          If InStr(FileName, "|0")
-         {
-             if InStr(FileName, "|00")
-             {
-             }
-             else
-             {
-            StringTrimRight, Prmpt, FileName, 6
-            LV_Add("", Prmpt, 0)
-             }
-         
-         }
-          If InStr(FileName, "|1")
-         {
-            StringTrimRight, Prmpt, FileName, 6
-            LV_Add("", Prmpt, 1)
-         
-         }
-          If InStr(FileName, "|2")
-         {
-            StringTrimRight, Prmpt, FileName, 6
-            LV_Add("", Prmpt, 2)
-         
-         }
-          If InStr(FileName, "|3")
-         {
-            StringTrimRight, Prmpt, FileName, 6
-            LV_Add("", Prmpt, 3)
-         
-         }
           
           }
           ; If (InStr(FileName, SearchTerm) = 1) ; for matching at the start
@@ -331,47 +302,19 @@ if not A_IsAdmin                ; Run as Admin just in case
         MsgBox, No folder selected.
         Return
     }
+    SetSettingIni(folder, "PromptDir" )
     gosub, ReadFiles
     Return
     
     
     ; Reads the prompt images from the specified folder and populates the list view with the prompt names and their corresponding tiers.
     ReadFiles:
-        PromptArrayT00 := []
-        PromptArrayT0 := []
-        PromptArrayT1 := []
-        PromptArrayT2 := []
-        PromptArrayT3 := []
+
         LVArray := []
-    
-        Loop, Files, %folder%\Tier 00\*.png
+        
+        Loop, Files, %folder%\*.txt, R
         {
-            LVArray.Push(A_LoopFileName . "|00")
-            PromptArrayT00.Push(A_LoopFileName)
-        }
-    
-        Loop, Files, %folder%\Tier 0\*.png
-        {
-            LVArray.Push(A_LoopFileName . "|0")
-            PromptArrayT0.Push(A_LoopFileName)
-        }
-    
-        Loop, Files, %folder%\Tier 1\*.png
-        {
-            LVArray.Push(A_LoopFileName . "|1")
-            PromptArrayT1.Push(A_LoopFileName)
-        }
-    
-        Loop, Files, %folder%\Tier 2\*.png
-        {
-            LVArray.Push(A_LoopFileName . "|2")
-            PromptArrayT2.Push(A_LoopFileName)
-        }
-    
-        Loop, Files, %folder%\Tier 3\*.png
-        {
-            LVArray.Push(A_LoopFileName . "|3")
-            PromptArrayT3.Push(A_LoopFileName)
+            LVArray.Push(A_LoopFileLongPath)
         }
     
         gosub, PopulateListView
@@ -385,49 +328,18 @@ if not A_IsAdmin                ; Run as Admin just in case
     PopulateListView:
     GuiControl, -Redraw, MyListViewV
     
-    Loop, % PromptArrayT00.Length()
+    Loop, % LVArray.Length()
     {
-        cur := PromptArrayT00[A_Index]
-        FullFileName = %folder%\Tier 00\%cur%
+        FullFileName := LVArray[A_Index]
+        
         SplitPath, FullFileName, fname, dir, ext, name_no_ext, drive 
-        LV_Add("",  name_no_ext, 00)
+        LV_Add("",  name_no_ext)
     }
     
-    Loop, % PromptArrayT0.Length()
-    {
-        cur := PromptArrayT0[A_Index]
-        FullFileName = %folder%\Tier 0\%cur%
-        SplitPath, FullFileName, fname, dir, ext, name_no_ext, drive 
-        LV_Add("",  name_no_ext, 0)
-    }
-    
-    Loop, % PromptArrayT1.Length()
-    {
-        cur := PromptArrayT1[A_Index]
-        FullFileName = %folder%\Tier 1\%cur%
-        SplitPath, FullFileName, fname, dir, ext, name_no_ext, drive 
-        LV_Add("",  name_no_ext, 1)
-    }
-    
-    Loop, % PromptArrayT2.Length()
-    {
-        cur := PromptArrayT2[A_Index]
-        FullFileName = %folder%\Tier 2\%cur%
-        SplitPath, FullFileName, fname, dir, ext, name_no_ext, drive 
-        LV_Add("",  name_no_ext, 2)
-    }
-    
-    Loop, % PromptArrayT3.Length()
-    {
-        cur := PromptArrayT3[A_Index]
-        FullFileName = %folder%\Tier 3\%cur%
-        SplitPath, FullFileName, fname, dir, ext, name_no_ext, drive 
-        LV_Add("",  name_no_ext, 3)
-    }
         
         
     LV_ModifyCol(1, "250")  ; Auto-size each column to fit its contents.
-    LV_ModifyCol(2, "AutoHdr Integer")  ; For sorting purposes, indicate that column 2 is an integer.
+    ;LV_ModifyCol(2, "AutoHdr Integer")  ; For sorting purposes, indicate that column 2 is an integer.
     GuiControl, +Redraw, MyListViewV
     Return
     
@@ -443,24 +355,28 @@ if not A_IsAdmin                ; Run as Admin just in case
     if (A_GuiEvent = "DoubleClick")
     {
         LV_GetText(RowText, A_EventInfo, 1)  ; Get the text from the row's first field.
-        LV_GetText(RowTier, A_EventInfo, 2)  ; Get the text from the row's first field.
+        ;LV_GetText(RowTier, A_EventInfo, 2)  ; Get the text from the row's first field.
         ;ToolTip You double-clicked row number %A_EventInfo%. Text: "%RowText%"
         ;SetTimer, RemoveToolTip, -1500
             if (RowText != "Prompt")
         MyListViewV := RowText
     }
-    Gui, Submit, NoHide
-    cur := MyListViewV
-    FullFileName = %folder%\Tier %RowTier%\%cur%
+    Gui, Submit, NoHide
+    
+    Selection := MyListViewV
+    ;MsgBox % Selection
+    AIndex := FindIndex(LVArray,Selection)
+    ;MsgBox % AIndex
+    FullFileName := LVArray[AIndex]
+    ;MsgBox % FullFileName
     SplitPath, FullFileName, fname, dir, ext, name_no_ext, drive 
-    GuiControl,, MyPic, *w400 *h400 %folder%\Tier %RowTier%\%RowText%.png
+    GuiControl,, MyPic, *w400 *h400 %dir%\%RowText%.png
     GuiControl,, MyLabel, % name_no_ext
-    FileRead, p, %folder%\Tier %RowTier%\%RowText%.txt
+    FileRead, p, %dir%\%RowText%.txt
     GuiControl,, promptContent, % p
     Return
     
-    
-    
+
     
     
     /*
@@ -518,116 +434,7 @@ if not A_IsAdmin                ; Run as Admin just in case
     
     
     
-    ; This function will receive the messages sent by both Toolbar's buttons.
-    TB_Messages(wParam, lParam)
-    {
-        Global ; Function (or at least the Handles) must be global.
-        ;msgbox % "WP: " . wParam . " - LP: " . lParam
-        
-        TB1.OnMessage(wParam) ; Handles messages from TB1
-        TB2.OnMessage(wParam) ; Handles messages from TB2
-    }
-    
-    ; This function will receive the notifications.
-    TB_Notify(wParam, lParam)
-    {
-        Global ; Function (or at least the Handles) must be global.
-        ;msgbox % "WP: " . wParam . " - LP: " . lParam
-        ReturnCode := TB1.OnNotify(lParam) ; Handles notifications.
-        If (ReturnCode = "") ; Check if previous return was blank to know if you should call OnNotify for the next.
-            ReturnCode := TB2.OnNotify(lParam)                 ; The return value contains the required
-        ;If (Label)                                             ; return for the call, so it must be
-            ;ShowMenu(Label, MX, MY)                            ; passed as return parameter.
-        return ReturnCode
-    }
-    
-    
-    
-    
-    
-    ;global numTokens := obj.num_tokens
-    ;global success := obj.success
-    ;global tokens := obj.tokens[1]
-    
-    
-    PopUpGUI(eJson)
-    {
-    global
-        
-        numTokens := eJson.num_tokens
-        ;success := eJson.success
-        tokens := eJson.tokens
-        
-        
-    
-        if numTokens > 0
-        {
-    
-            ; Initialize an empty string to hold the concatenated tokens
-            tokenString := ""
-    
-            ; Loop over the `tokens` array and concatenate each element to `tokenString`
-            Loop, % tokens.Length()
-            {
-                tokenString .= tokens[A_Index] . " "
-            }
-    
-            ; `tokenString` now contains the concatenated tokens
-           ; MsgBox % tokenString
-    
-        }
-        else
-        {
-            Gui, Estimator:Destroy
-        }
-    
-        Gui  Estimator:New, +AlwaysOnTop
-        Gui, Estimator:Add, text, x10 y10 w200 h25 , Token Count (Estimate)
-        Gui, Estimator:Add, Edit, x10 y25 w200 h25 vTokenCount, %numTokens%
-        Gui, Estimator:Add, text, x10 y55 w200 h25 , Individual tokens List
-        Gui, Estimator:Add, Edit, x10 y75 w200 r6 vTokenDisplay, %tokenString%
-     
-        Gui, Show
-        return
-    
-    }
-    
-    
-    GetTokenEstimate(string)
-    {
-        
-    
-        url := "https://zero-workspace-server.uc.r.appspot.com/tokenizer"
-    
-        curl := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-        curl.Open("POST", url)
-        curl.SetRequestHeader("Accept", "application/json")
-        curl.SetRequestHeader("Content-Type", "application/json")
-        d = "text"
-        ;data := "{d:""" . string . """}"
-        data :=  "{" . d .  ": " . chr(34) . string . chr(34) . "}" 
-        curl.Send(data)
-    
-        resp := curl.ResponseText
-        
-        werror := SubStr(resp, 1 , 1)
-            if (werror = "<")
-            msgbox, EEEEEOOOORRRRRROOOORRR
-        ;msgbox %  resp
-        obj := JSON.Load(resp)
-    
-    
-        ; Access the values
-        ;numTokens := obj.num_tokens
-        ;success := obj.success
-        ;tokens := obj.tokens[1]
-        
-        return obj
-        ; Print the values
-        ;MsgBox % "num_tokens: " numTokens "`n" "success: " success "`n" "tokens: " tokens
-    
-    
-    }
+
     
     
     
@@ -639,21 +446,11 @@ if not A_IsAdmin                ; Run as Admin just in case
     F3::MsgBox % getSelected()
     
     
-    getSelected() 
-    {
-        ControlGetFocus, control, A
-        VarSetCapacity(start, 4)
-        VarSetCapacity(end, 4)
-        SendMessage, 0xB0, &start, &end, %control%, A		;EM_GETSEL
-        ControlGetText, string, %control%, A
-        ;enc := (RegexMatch(string,"[\x{0100}-\x{FFFF}]")?"cp0":"utf-16") ;detect encoding of string
-        string := SubStr(StrGet(&string), pos := NumGet(start) + 1, NumGet(end) - pos + 1)
-        return string
-    
-    }
+
     
     ButtonEstimate:
     gui submit, nohide
+    SB_SetIcon(A_ScriptDir . "\Img\RedDotAlt.ico", 1, 1)
     val := RegExReplace(promptContent, "\R", "``n")
     ;msgbox % val
     if (val!= "")
@@ -662,6 +459,11 @@ if not A_IsAdmin                ; Run as Admin just in case
      StringReplace, val, val, %n% , ▒, All
      rJson :=  GetTokenEstimate(val)
      PopUpGUI(rJson)
+     
+    }
+    Else
+    {
+    SB_SetIcon(A_ScriptDir . "\Img\RedDot.ico", 1, 1)
     }
     
     
